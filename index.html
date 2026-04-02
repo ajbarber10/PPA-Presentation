@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS Private Pricing Agreement — Growth Acceleration Framework</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="top-nav">
+    <a class="nav-link active" href="#overview"><span class="nav-dot"></span>Overview</a>
+    <a class="nav-link" href="#eligibility"><span class="nav-dot"></span>Eligibility</a>
+    <a class="nav-link" href="#qualification"><span class="nav-dot"></span>Qualification</a>
+    <a class="nav-link" href="#optimization"><span class="nav-dot"></span>Cost Optimization</a>
+    <a class="nav-link" href="#demand-planning"><span class="nav-dot"></span>Demand Planning</a>
+    <a class="nav-link" href="#deal-structure"><span class="nav-dot"></span>Deal Structure</a>
+    <a class="nav-link" href="#pitfalls"><span class="nav-dot"></span>Pitfalls</a>
+    <a class="nav-link" href="#calculator"><span class="nav-dot"></span>Calculator</a>
+    <a class="nav-link" href="#planner"><span class="nav-dot"></span>Your Plan</a>
+  </nav>
+
+  <!-- Header -->
+  <header class="page-header">
+    <div class="page-badge">Enterprise Cloud Strategy</div>
+    <h1>📋 AWS Private Pricing Agreement</h1>
+    <p>An interactive guide to understanding how a Private Pricing Agreement can accelerate your cloud strategy through custom pricing, predictable costs, and a deeper partnership with AWS.</p>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 1: PPA OVERVIEW & GROWTH JOURNEY
+       ═══════════════════════════════════════ -->
+  <section class="section" id="overview">
+    <div class="section-container">
+      <div class="section-label">Section 1 — PPA Overview & Growth Acceleration</div>
+
+      <div class="narrative-card">
+        <div class="narrative-icon">🚀</div>
+        <div class="narrative-content">
+          <h3>A PPA Is Not a Discount — It's a Growth Partnership</h3>
+          <p>A Private Pricing Agreement is a contractual commitment where your organization pledges a specific dollar amount of AWS spend over a 1-to-5-year term. In exchange, AWS provides custom pricing benefits across 200+ services. The real value isn't the pricing — it's the predictability, reinvestment capacity, and accelerated cloud adoption that comes with it.</p>
+        </div>
+      </div>
+
+      <div class="card-grid three-col">
+        <div class="info-card">
+          <div class="info-card-icon">📈</div>
+          <h4>Revenue Predictability</h4>
+          <p>Long-term commitments help AWS forecast accurately, pacing capex investments and financial planning.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">🌱</div>
+          <h4>Growth Opportunity</h4>
+          <p>PPAs include usage growth objectives, incentivizing adoption of new services and expanding customer footprint.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">🤝</div>
+          <h4>Strategic Partnership</h4>
+          <p>Committed customers get deeper engagement, migration support, and access to innovation programs.</p>
+        </div>
+      </div>
+
+      <!-- Growth Journey Chart -->
+      <div class="chart-container">
+        <div class="chart-header">
+          <h3>Growth Journey: Organic vs. PPA-Accelerated</h3>
+          <p>Total spend grows as your business scales — but the real story is what happens to your cost per business unit</p>
+        </div>
+        <div class="chart-controls">
+          <div class="slider-group">
+            <label>Starting Annual Spend</label>
+            <div class="slider-row">
+              <input type="range" id="overviewSpend" min="500000" max="10000000" step="100000" value="500000">
+              <span class="slider-val" id="overviewSpendVal">$500K</span>
+            </div>
+          </div>
+          <div class="slider-group">
+            <label>Organic Growth Rate</label>
+            <div class="slider-row">
+              <input type="range" id="overviewGrowth" min="5" max="30" step="1" value="12">
+              <span class="slider-val" id="overviewGrowthVal">12%</span>
+            </div>
+          </div>
+          <div class="slider-group">
+            <label>Business Units (starting)</label>
+            <div class="slider-row">
+              <input type="range" id="overviewUnits" min="1000" max="500000" step="1000" value="50000">
+              <span class="slider-val" id="overviewUnitsVal">50K</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="growth-dual-charts">
+          <div class="growth-dual-panel">
+            <h4>📈 Total Cloud Investment</h4>
+            <p class="panel-sub">Spend grows as you scale — this is investment, not waste</p>
+            <div class="chart-wrapper"><canvas id="growthJourneyChart"></canvas></div>
+          </div>
+          <div class="growth-dual-panel highlight-panel">
+            <h4>📉 Cost per Business Unit</h4>
+            <p class="panel-sub">PPA pricing drives your unit economics down as you grow</p>
+            <div class="chart-wrapper"><canvas id="costPerUnitChart"></canvas></div>
+          </div>
+        </div>
+
+        <div class="growth-kpi-row">
+          <div class="growth-kpi">
+            <div class="growth-kpi-label">Cost / Unit Today</div>
+            <div class="growth-kpi-value" id="cpuToday">$10.00</div>
+          </div>
+          <div class="growth-kpi">
+            <div class="growth-kpi-label">Cost / Unit Year 5 (No PPA)</div>
+            <div class="growth-kpi-value muted" id="cpuOrganic">$8.20</div>
+          </div>
+          <div class="growth-kpi">
+            <div class="growth-kpi-label">Cost / Unit Year 5 (With PPA)</div>
+            <div class="growth-kpi-value green" id="cpuPPA">$6.40</div>
+          </div>
+          <div class="growth-kpi highlight-kpi">
+            <div class="growth-kpi-label">Unit Cost Reduction</div>
+            <div class="growth-kpi-value accent" id="cpuReduction">-36%</div>
+          </div>
+        </div>
+
+        <div class="chart-insight" id="growthInsight"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 2: ELIGIBILITY & ENTERPRISE SUPPORT VALUE
+       ═══════════════════════════════════════ -->
+  <section class="section" id="eligibility">
+    <div class="section-container">
+      <div class="section-label">Section 2 — Eligibility Criteria & Enterprise Support Value</div>
+
+      <div class="narrative-card">
+        <div class="narrative-icon">🎯</div>
+        <div class="narrative-content">
+          <h3>What Does It Take to Qualify for Private Pricing?</h3>
+          <p>A PPA isn't available to every AWS customer — it's designed for organizations with meaningful cloud investment and a clear growth trajectory. Meeting the eligibility criteria unlocks custom pricing that can transform your cloud economics. Here's what you need.</p>
+        </div>
+      </div>
+
+      <!-- Eligibility Criteria Cards -->
+      <div class="eligibility-checklist" id="eligibilityChecklist">
+        <div class="eligibility-item" data-criteria="spend">
+          <button class="elig-toggle" aria-pressed="false" aria-label="Toggle spend criteria">
+            <span class="elig-toggle-track"><span class="elig-toggle-thumb"></span></span>
+          </button>
+          <div class="eligibility-body">
+            <h4>Minimum Annual AWS Spend</h4>
+            <p>Your organization should have an annual AWS spend of at least <span class="highlight">$500K–$1M+</span>. High-growth companies approaching this threshold with a strong trajectory may also qualify.</p>
+          </div>
+          <div class="elig-status-badge" aria-live="polite">Not Yet</div>
+        </div>
+        <div class="eligibility-item" data-criteria="growth">
+          <button class="elig-toggle" aria-pressed="false" aria-label="Toggle growth criteria">
+            <span class="elig-toggle-track"><span class="elig-toggle-thumb"></span></span>
+          </button>
+          <div class="eligibility-body">
+            <h4>Demonstrated Growth or Migration Plans</h4>
+            <p>AWS looks for customers with clear plans to grow their cloud footprint — whether through new workloads, migrations, regional expansion, or organic usage growth.</p>
+          </div>
+          <div class="elig-status-badge" aria-live="polite">Not Yet</div>
+        </div>
+        <div class="eligibility-item" data-criteria="enterprise-support">
+          <button class="elig-toggle" aria-pressed="false" aria-label="Toggle enterprise support criteria">
+            <span class="elig-toggle-track"><span class="elig-toggle-thumb"></span></span>
+          </button>
+          <div class="eligibility-body">
+            <h4>Enterprise Support Enrollment</h4>
+            <p>Active enrollment in <span class="highlight">AWS Enterprise Support</span> is a prerequisite. But this isn't just a checkbox — it's a strategic advantage that pays for itself. See the value breakdown below.</p>
+          </div>
+          <div class="elig-status-badge" aria-live="polite">Not Yet</div>
+        </div>
+        <div class="eligibility-item" data-criteria="commitment">
+          <button class="elig-toggle" aria-pressed="false" aria-label="Toggle commitment criteria">
+            <span class="elig-toggle-track"><span class="elig-toggle-thumb"></span></span>
+          </button>
+          <div class="eligibility-body">
+            <h4>Willingness to Commit (1–5 Year Term)</h4>
+            <p>PPAs require a contractual spend commitment over a defined term. Longer terms unlock better pricing tiers, but even a 1-year agreement delivers meaningful value.</p>
+          </div>
+          <div class="elig-status-badge" aria-live="polite">Not Yet</div>
+        </div>
+        <div class="eligibility-item" data-criteria="reference">
+          <button class="elig-toggle" aria-pressed="false" aria-label="Toggle referenceable customer criteria">
+            <span class="elig-toggle-track"><span class="elig-toggle-thumb"></span></span>
+          </button>
+          <div class="eligibility-body">
+            <h4>Referenceable Customer</h4>
+            <p>Customer is agreeable to reference of name and logo. <span style="color:#5a6380; font-style:italic;">* Negotiable — this is preferred but can be discussed as part of the agreement.</span></p>
+          </div>
+          <div class="elig-status-badge" aria-live="polite">Not Yet</div>
+        </div>
+      </div>
+
+      <!-- Eligibility Readiness Summary -->
+      <div class="elig-readiness" id="eligReadiness">
+        <div class="elig-readiness-bar">
+          <div class="elig-readiness-fill" id="eligFill"></div>
+        </div>
+        <div class="elig-readiness-labels">
+          <span class="elig-count"><span id="eligCount">0</span> of 5 criteria met</span>
+          <span class="elig-verdict" id="eligVerdict">Complete the criteria above to assess eligibility</span>
+        </div>
+      </div>
+
+      <!-- Enterprise Support Value Section -->
+      <div class="chart-container" style="margin-top: 30px;">
+        <div class="chart-header">
+          <h3>🛡️ The Value of Enterprise Support — It's More Than a Cost</h3>
+          <p>Enterprise Support is often seen as an expense. In reality, it's an investment that delivers measurable ROI through faster issue resolution, proactive guidance, and direct access to AWS expertise.</p>
+        </div>
+
+        <div class="es-value-grid">
+          <div class="es-value-card">
+            <div class="es-value-icon">⚡</div>
+            <div class="es-value-metric">< 15 min</div>
+            <h4>Critical Response Time</h4>
+            <p>Business-critical issues get a response in under 15 minutes, 24/7. That's the difference between hours of downtime and minutes.</p>
+          </div>
+          <div class="es-value-card">
+            <div class="es-value-icon">👤</div>
+            <div class="es-value-metric">Dedicated TAM</div>
+            <h4>Technical Account Manager</h4>
+            <p>A named TAM who knows your architecture, proactively identifies risks, and helps you plan for growth. Your strategic advisor inside AWS.</p>
+          </div>
+          <div class="es-value-card">
+            <div class="es-value-icon">🔍</div>
+            <div class="es-value-metric">Proactive</div>
+            <h4>Infrastructure Event Mgmt</h4>
+            <p>AWS engineers review your architecture before major launches, migrations, or traffic events — catching issues before they become incidents.</p>
+          </div>
+          <div class="es-value-card">
+            <div class="es-value-icon">📊</div>
+            <div class="es-value-metric">Trusted Advisor</div>
+            <h4>Full Access to Checks</h4>
+            <p>Unlock all Trusted Advisor checks for cost optimization, security, fault tolerance, and performance — typically surfacing 20-30% in savings opportunities.</p>
+          </div>
+          <div class="es-value-card">
+            <div class="es-value-icon">🎓</div>
+            <div class="es-value-metric">Training</div>
+            <h4>Self-Paced Labs</h4>
+            <p>Access to self-paced labs and training resources to upskill your team on AWS services and best practices.</p>
+          </div>
+          <div class="es-value-card">
+            <div class="es-value-icon">🔧</div>
+            <div class="es-value-metric">Concierge</div>
+            <h4>Support Concierge</h4>
+            <p>A dedicated team to help with billing, account, and non-technical inquiries — freeing your team to focus on building.</p>
+          </div>
+        </div>
+
+        <!-- Enterprise Support ROI Calculator -->
+        <div class="es-roi-section">
+          <div class="chart-header" style="margin-top: 24px;">
+            <h3>Enterprise Support ROI Estimator</h3>
+            <p>See how Enterprise Support cost compares to the value it delivers at your spend level</p>
+          </div>
+          <div class="chart-controls">
+            <div class="slider-group">
+              <label>Your Annual AWS Spend</label>
+              <div class="slider-row">
+                <input type="range" id="esAnnualSpend" min="100000" max="15000000" step="50000" value="500000">
+                <span class="slider-val" id="esAnnualSpendVal">$500K</span>
+              </div>
+            </div>
+            <div class="slider-group">
+              <label>Estimated Downtime Hours Prevented / Year</label>
+              <div class="slider-row">
+                <input type="range" id="esDowntimeHours" min="0" max="100" step="1" value="20">
+                <span class="slider-val" id="esDowntimeHoursVal">20 hrs</span>
+              </div>
+            </div>
+            <div class="slider-group">
+              <label>Cost of Downtime (per hour)</label>
+              <div class="slider-row">
+                <input type="range" id="esDowntimeCost" min="1000" max="100000" step="1000" value="10000">
+                <span class="slider-val" id="esDowntimeCostVal">$10K</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Manual ES Cost Override -->
+          <div class="es-cost-override">
+            <div class="es-cost-override-left">
+              <h4>Enterprise Support Monthly Cost</h4>
+              <p>Estimated from tiered pricing, or enter the exact amount from your AWS account team</p>
+            </div>
+            <div class="es-cost-override-input">
+              <div class="spend-input-wrap">
+                <span class="spend-prefix">$</span>
+                <input type="text" id="esManualCost" class="planner-input" value="" placeholder="auto" aria-label="Monthly Enterprise Support cost">
+              </div>
+              <span class="es-cost-suffix">/ month</span>
+              <button class="es-cost-reset-btn" id="esResetBtn" title="Reset to estimated">↺ Auto</button>
+            </div>
+          </div>
+
+          <div class="es-roi-results">
+            <div class="es-roi-card">
+              <div class="es-roi-label">Enterprise Support Cost</div>
+              <div class="es-roi-value cost" id="esCost">$180K/yr</div>
+              <div class="es-roi-sub" id="esCostSub">Based on tiered pricing</div>
+            </div>
+            <div class="es-roi-card">
+              <div class="es-roi-label">Downtime Savings</div>
+              <div class="es-roi-value green" id="esDowntimeSavings">$200K/yr</div>
+              <div class="es-roi-sub">Faster resolution & prevention</div>
+            </div>
+            <div class="es-roi-card">
+              <div class="es-roi-label">Optimization Savings</div>
+              <div class="es-roi-value green" id="esOptSavings">$120K/yr</div>
+              <div class="es-roi-sub">Trusted Advisor + TAM guidance</div>
+            </div>
+            <div class="es-roi-card highlight-roi">
+              <div class="es-roi-label">Net ROI</div>
+              <div class="es-roi-value" id="esNetROI" style="color:#64ffda">+$140K/yr</div>
+              <div class="es-roi-sub" id="esROIPercent">178% return</div>
+            </div>
+          </div>
+          <div class="chart-wrapper"><canvas id="esROIChart"></canvas></div>
+          <div class="chart-insight" id="esInsight"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 3: CUSTOMER QUALIFICATION
+       ═══════════════════════════════════════ -->
+  <section class="section" id="qualification">
+    <div class="section-container">
+      <div class="section-label">Section 3 — Customer Assessment & Qualification</div>
+      <div class="qualification-flow">
+        <div class="qual-step">
+          <div class="qual-num">1</div>
+          <div class="qual-card"><h4>📊 Spend Threshold</h4><p>Annual AWS spend of <span class="highlight">$500K–$1M+</span></p><div class="qual-detail">High-growth companies at $500K can negotiate if trajectory supports it.</div></div>
+        </div>
+        <div class="qual-connector"><svg viewBox="0 0 40 20"><line x1="0" y1="10" x2="40" y2="10" stroke="#ff9900" stroke-width="2" stroke-dasharray="4,3"/><polygon points="34,6 40,10 34,14" fill="#ff9900" opacity="0.7"/></svg></div>
+        <div class="qual-step">
+          <div class="qual-num">2</div>
+          <div class="qual-card"><h4>📈 Growth Trajectory</h4><p>Demonstrated or planned <span class="highlight">YoY growth</span></p><div class="qual-detail">Migrations, new workloads, regional expansion, or organic growth.</div></div>
+        </div>
+        <div class="qual-connector"><svg viewBox="0 0 40 20"><line x1="0" y1="10" x2="40" y2="10" stroke="#ff9900" stroke-width="2" stroke-dasharray="4,3"/><polygon points="34,6 40,10 34,14" fill="#ff9900" opacity="0.7"/></svg></div>
+        <div class="qual-step">
+          <div class="qual-num">3</div>
+          <div class="qual-card"><h4>🛡️ Enterprise Support</h4><p>Enrollment in <span class="highlight">Enterprise Support</span></p><div class="qual-detail">Required for PPA participation. Must factor into ROI calculations.</div></div>
+        </div>
+        <div class="qual-connector"><svg viewBox="0 0 40 20"><line x1="0" y1="10" x2="40" y2="10" stroke="#ff9900" stroke-width="2" stroke-dasharray="4,3"/><polygon points="34,6 40,10 34,14" fill="#ff9900" opacity="0.7"/></svg></div>
+        <div class="qual-step">
+          <div class="qual-num">4</div>
+          <div class="qual-card"><h4>⏱️ Term Commitment</h4><p><span class="highlight">1, 3, or 5-year</span> agreements</p><div class="qual-detail">Longer terms unlock higher tiers. Commitments only go up.</div></div>
+        </div>
+      </div>
+      <div class="gauge-container">
+        <div class="chart-header"><h3>Qualification Assessment</h3><p>Adjust the customer's profile to see PPA readiness</p></div>
+        <div class="chart-controls">
+          <div class="slider-group"><label>Current Annual AWS Spend</label><div class="slider-row"><input type="range" id="qualSpend" min="100000" max="10000000" step="50000" value="500000"><span class="slider-val" id="qualSpendVal">$500K</span></div></div>
+          <div class="slider-group"><label>Expected YoY Growth</label><div class="slider-row"><input type="range" id="qualGrowth" min="0" max="40" step="1" value="15"><span class="slider-val" id="qualGrowthVal">15%</span></div></div>
+        </div>
+        <div class="gauge-display">
+          <div class="gauge-bar"><div class="gauge-fill" id="qualFill"></div></div>
+          <div class="gauge-labels"><span>Not Ready</span><span>Emerging</span><span>Strong Candidate</span><span>Ideal</span></div>
+          <div class="gauge-verdict" id="qualVerdict"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 3: COST OPTIMIZATION (PRE-PPA)
+       ═══════════════════════════════════════ -->
+  <section class="section" id="optimization">
+    <div class="section-container">
+      <div class="section-label">Section 4 — Cost Optimization Stack (Pre-PPA)</div>
+      <div class="narrative-card">
+        <div class="narrative-icon">⚠️</div>
+        <div class="narrative-content">
+          <h3>Optimize First, Then Commit to Growth</h3>
+          <p>AWS sets PPA targets based on net spend — after savings from Reserved Instances and Savings Plans. If infrastructure is bloated or under-optimized, you risk locking in an inflated commitment. The PPA is the capstone of your optimization strategy, not the foundation.</p>
+        </div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-header"><h3>Optimization Stack Builder</h3><p>Toggle each optimization layer to see how value compounds before the PPA commitment</p></div>
+        <div class="toggle-controls">
+          <div class="toggle-group">
+            <button class="toggle-btn active" data-layer="rightsizing"><span class="toggle-indicator"></span>⚙️ Rightsizing<span class="toggle-savings">High Impact</span></button>
+            <button class="toggle-btn active" data-layer="ri-sp"><span class="toggle-indicator"></span>💰 RIs &amp; Savings Plans<span class="toggle-savings">High Impact</span></button>
+            <button class="toggle-btn active" data-layer="waste"><span class="toggle-indicator"></span>🗑️ Waste Elimination<span class="toggle-savings">Moderate Impact</span></button>
+            <button class="toggle-btn active" data-layer="ppa"><span class="toggle-indicator"></span>📋 PPA Value<span class="toggle-savings">Incremental</span></button>
+          </div>
+        </div>
+        <div class="stack-display">
+          <div class="chart-wrapper"><canvas id="optimizationChart"></canvas></div>
+          <div class="stack-summary">
+            <div class="summary-item"><span class="summary-label">On-Demand Baseline</span><span class="summary-value" id="stackBaseline">$2,000,000</span></div>
+            <div class="summary-item highlight-savings"><span class="summary-label">Total Savings</span><span class="summary-value" id="stackSavings">$0</span></div>
+            <div class="summary-item"><span class="summary-label">Effective Rate</span><span class="summary-value" id="stackRate">100%</span></div>
+            <div class="summary-item"><span class="summary-label">Optimized Spend</span><span class="summary-value" id="stackOptimized">$2,000,000</span></div>
+          </div>
+        </div>
+        <div class="chart-controls" style="margin-top:16px;">
+          <div class="slider-group"><label>On-Demand Annual Baseline</label><div class="slider-row"><input type="range" id="stackSpend" min="500000" max="15000000" step="100000" value="500000"><span class="slider-val" id="stackSpendVal">$500K</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 4: DEMAND PLANNING SANDBOX
+       ═══════════════════════════════════════ -->
+  <section class="section" id="demand-planning">
+    <div class="section-container">
+      <div class="section-label">Section 5 — Demand Planning &amp; Forecasting Sandbox</div>
+      <div class="narrative-card">
+        <div class="narrative-icon">🎯</div>
+        <div class="narrative-content">
+          <h3>Size the Commitment, Fuel the Growth</h3>
+          <p>Demand planning is the core of PPA structuring. Analyze 12–18 months of historical usage, project growth from migrations and new workloads, and factor in ISV software you could route through AWS Marketplace. Up to 25% of your PPA commitment can be satisfied by Marketplace transactions — reducing the amount you need to cover with direct AWS usage.</p>
+        </div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-header"><h3>Demand Planning Sandbox</h3><p>Model your commitment level, growth trajectory, and see how routing ISV spend through Marketplace offsets your direct AWS usage requirement</p></div>
+        <div class="chart-controls">
+          <div class="slider-group"><label>Current Annual AWS Spend</label><div class="slider-row"><input type="range" id="dpSpend" min="500000" max="10000000" step="100000" value="500000"><span class="slider-val" id="dpSpendVal">$500K</span></div></div>
+          <div class="slider-group"><label>YoY Growth %</label><div class="slider-row"><input type="range" id="dpGrowth" min="5" max="35" step="1" value="15"><span class="slider-val" id="dpGrowthVal">15%</span></div></div>
+          <div class="slider-group"><label>Term Length</label><div class="slider-row"><input type="range" id="dpTerm" min="1" max="5" step="1" value="3"><span class="slider-val" id="dpTermVal">3 yr</span></div></div>
+        </div>
+
+        <!-- Marketplace ISV Input -->
+        <div class="mktplace-input-section">
+          <div class="mktplace-header">
+            <div class="mktplace-icon">🏪</div>
+            <div>
+              <h4>AWS Marketplace ISV Spend</h4>
+              <p>How much does your organization spend annually on ISV software that could be routed through AWS Marketplace?</p>
+            </div>
+          </div>
+          <div class="mktplace-input-row">
+            <div class="mktplace-dollar-input">
+              <span class="spend-prefix">$</span>
+              <input type="text" id="dpMktplaceAmount" class="planner-input" value="50,000" aria-label="Annual ISV spend for Marketplace">
+              <span class="mktplace-suffix">/ year</span>
+            </div>
+            <div class="mktplace-cap-info" id="dpCapInfo">
+              <span class="mktplace-cap-label">25% cap applied:</span>
+              <span class="mktplace-cap-value" id="dpCapValue">$50K eligible</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-wrapper"><canvas id="demandChart"></canvas></div>
+
+        <!-- Before / After Marketplace Breakdown -->
+        <div class="mktplace-breakdown">
+          <div class="mktplace-breakdown-card">
+            <div class="mktplace-breakdown-label">Total PPA Commitment</div>
+            <div class="mktplace-breakdown-value" id="dpTotalCommitment">$500K</div>
+            <div class="mktplace-breakdown-sub">Full annual obligation</div>
+          </div>
+          <div class="mktplace-breakdown-arrow">→</div>
+          <div class="mktplace-breakdown-card mktplace-card-highlight">
+            <div class="mktplace-breakdown-label">Marketplace Drawdown</div>
+            <div class="mktplace-breakdown-value purple" id="dpMktplaceDrawdown">$50K</div>
+            <div class="mktplace-breakdown-sub">ISV spend counting toward commitment</div>
+          </div>
+          <div class="mktplace-breakdown-arrow">→</div>
+          <div class="mktplace-breakdown-card mktplace-card-result">
+            <div class="mktplace-breakdown-label">Remaining AWS Usage Needed</div>
+            <div class="mktplace-breakdown-value green" id="dpRemainingUsage">$450K</div>
+            <div class="mktplace-breakdown-sub">Direct AWS spend to meet commitment</div>
+          </div>
+        </div>
+
+        <div class="demand-metrics">
+          <div class="metric-card"><div class="metric-label">Value Tier</div><div class="metric-value accent" id="dpDiscount">Enhanced</div><div class="metric-sub" id="dpTier">Based on commitment level</div></div>
+          <div class="metric-card"><div class="metric-label">Total Commitment (Full Term)</div><div class="metric-value" id="dpCommitment">$6.0M</div><div class="metric-sub">Over full term</div></div>
+          <div class="metric-card"><div class="metric-label">Total Savings</div><div class="metric-value green" id="dpSavings">$600K</div><div class="metric-sub">vs. On-Demand</div></div>
+          <div class="metric-card"><div class="metric-label">Marketplace Offset (Full Term)</div><div class="metric-value purple" id="dpMktplaceTotal">$150K</div><div class="metric-sub" id="dpMktplaceSub">Counts toward commitment</div></div>
+        </div>
+        <div class="chart-insight" id="dpInsight"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 5: DEAL STRUCTURE & NEGOTIATION
+       ═══════════════════════════════════════ -->
+  <section class="section" id="deal-structure">
+    <div class="section-container">
+      <div class="section-label">Section 6 — Deal Structure &amp; Growth Clause Visualizer</div>
+      <div class="chart-container">
+        <div class="chart-header"><h3>Deal Scenario Comparator</h3><p>Compare conservative, balanced, and aggressive deal structures side by side</p></div>
+        <div class="chart-controls">
+          <div class="slider-group"><label>Annual Spend Baseline</label><div class="slider-row"><input type="range" id="dealSpend" min="500000" max="10000000" step="100000" value="500000"><span class="slider-val" id="dealSpendVal">$500K</span></div></div>
+        </div>
+        <div class="scenario-grid" id="scenarioGrid">
+          <div class="scenario-card" data-scenario="conservative">
+            <div class="scenario-badge conservative">Conservative</div>
+            <div class="scenario-title">1-Year Term</div>
+            <div class="scenario-detail">Lower risk, foundational value. Good for first-time PPA customers or uncertain growth.</div>
+            <div class="scenario-stat"><span class="scenario-stat-label">Value Level</span><span class="scenario-stat-value" id="sc1Discount" style="color:#64ffda">Standard</span></div>
+            <div class="scenario-stat"><span class="scenario-stat-label">Total Savings</span><span class="scenario-stat-value" id="sc1Savings">$140K</span></div>
+            <div class="scenario-stat"><span class="scenario-stat-label">Growth Clause</span><span class="scenario-stat-value">5% YoY</span></div>
+            <div class="scenario-stat"><span class="scenario-stat-label">True-Up Risk</span><span class="scenario-stat-value" style="color:#64ffda">Low</span></div>
+          </div>
+          <div class="scenario-card active" data-scenario="balanced">
+            <div class="scenario-badge balanced">Balanced ★</div>
+            <div class="scenario-title">3-Year Term</div>
+            <div class="scenario-detail">Sweet spot for most enterprises. Strong value with manageable commitment.</div>
+            <div class="scenario-stat"><span class="scenario-stat-label">Value Level</span><span class="scenario-stat-value" id="sc2Discount" style="color:#ff9900">Enhanced</span></div>
+            <div class="scenario-stat"><span class="scenario-stat-label">Total Savings</span><span class="scenario-stat-value" id="sc2Savings">$792K</span></div>
+            <div class="scenario-stat"><span class="scenario-stat-label">Growth Clause</span><span class="scenario-stat-value">10% YoY</span></div>
+            <div class="scenario-stat"><span class="scenario-stat-label">True-Up Risk</span><span class="scenario-stat-value" style="color:#ff9900">Medium</span></div>
+          </div>
+          <div class="scenario-card" data-scenario="aggressive">
+            <div class="scenario-badge aggressive">Aggressive</div>
+            <div class="scenario-title">5-Year Term</div>
+            <div class="scenario-detail">Maximum value for high-confidence growth. Best for large migrations or M&amp;A.</div>
+            <div class="scenario-stat"><span class="scenario-stat-label">Value Level</span><span class="scenario-stat-value" id="sc3Discount" style="color:#b8a9ff">Premium</span></div>
+            <div class="scenario-stat"><span class="scenario-stat-label">Total Savings</span><span class="scenario-stat-value" id="sc3Savings">$2.3M</span></div>
+            <div class="scenario-stat"><span class="scenario-stat-label">Growth Clause</span><span class="scenario-stat-value">15% YoY</span></div>
+            <div class="scenario-stat"><span class="scenario-stat-label">True-Up Risk</span><span class="scenario-stat-value" style="color:#ff4444">Higher</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-header"><h3>Growth Clause: Static vs. Growth Acceleration</h3><p>Reframe the conversation — YoY growth clauses unlock progressively better value tiers and fund innovation</p></div>
+        <div class="chart-controls">
+          <div class="slider-group"><label>Growth Clause %</label><div class="slider-row"><input type="range" id="growthClause" min="5" max="25" step="1" value="12"><span class="slider-val" id="growthClauseVal">12%</span></div></div>
+          <div class="slider-group"><label>Starting Commitment</label><div class="slider-row"><input type="range" id="growthBase" min="500000" max="10000000" step="100000" value="500000"><span class="slider-val" id="growthBaseVal">$500K</span></div></div>
+        </div>
+        <div class="growth-comparison">
+          <div class="growth-panel"><h4>❌ Static Commitment Mindset</h4><p class="panel-sub">Flat commitment, value erodes with inflation, no tier progression</p><div class="chart-wrapper"><canvas id="staticGrowthChart"></canvas></div></div>
+          <div class="growth-panel highlight-panel"><h4>✅ Growth Acceleration Partnership</h4><p class="panel-sub">Ascending commitment unlocks better tiers, funds new services &amp; regions</p><div class="chart-wrapper"><canvas id="dynamicGrowthChart"></canvas></div></div>
+        </div>
+        <div class="chart-insight" id="growthClauseInsight"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 6: PITFALLS & RISK
+       ═══════════════════════════════════════ -->
+  <section class="section" id="pitfalls">
+    <div class="section-container">
+      <div class="section-label">Section 7 — Common Pitfalls &amp; Risk Mitigation</div>
+      <div class="pitfall-grid">
+        <div class="pitfall-card">
+          <h4>⚠️ Overcommitting Before Optimizing</h4>
+          <p>Locking in a PPA on bloated infrastructure means your commitment reflects waste, not real demand. Post-optimization spend drops and you face true-up fees.</p>
+          <div class="pitfall-tip">💡 Complete rightsizing, RI/SP coverage, and waste elimination before entering the PPA process.</div>
+        </div>
+        <div class="pitfall-card">
+          <h4>📈 Aggressive Growth Clauses</h4>
+          <p>Growth clauses with aggressive YoY targets sound great for unlocking better value tiers, but if projected growth doesn't materialize, you're locked into escalating commitments you can't meet.</p>
+          <div class="pitfall-tip">💡 Model conservative, base, and optimistic scenarios. Commit to the conservative number.</div>
+        </div>
+        <div class="pitfall-card">
+          <h4>💸 Enterprise Support Cost Surprise</h4>
+          <p>Enterprise Support is mandatory for PPA participation and is calculated as a percentage of monthly usage. At lower spend levels, support fees can consume a significant portion of PPA value.</p>
+          <div class="pitfall-tip">💡 Factor Enterprise Support into all ROI calculations from day one.</div>
+        </div>
+        <div class="pitfall-card">
+          <h4>🏢 M&amp;A Implications</h4>
+          <p>PPA commitments survive mergers and acquisitions. The acquiring company may inherit obligations even if the original workloads are decommissioned.</p>
+          <div class="pitfall-tip">💡 Include M&amp;A flexibility clauses in the contract.</div>
+        </div>
+        <div class="pitfall-card">
+          <h4>📊 Marketplace Spend Limits</h4>
+          <p>Only up to 25% of your PPA commitment can be satisfied by AWS Marketplace spend. Exceeding this threshold means that spend doesn't count toward your commitment.</p>
+          <div class="pitfall-tip">💡 Negotiate higher Marketplace inclusion (30-35%) if your stack relies on third-party SaaS.</div>
+        </div>
+        <div class="pitfall-card">
+          <h4>🔄 True-Up Mechanics</h4>
+          <p>If usage falls short of commitment, a true-up fee is applied at period end. This is a guaranteed minimum spend, not a target — you pay the full amount regardless.</p>
+          <div class="pitfall-tip">💡 Request quarterly true-up visibility instead of annual surprises. Track pacing monthly.</div>
+        </div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-header"><h3>Risk / Reward Balance</h3><p>Find the sweet spot — too low leaves value on the table, too high creates true-up risk</p></div>
+        <div class="chart-controls">
+          <div class="slider-group"><label>Commitment Level (% of Projected Spend)</label><div class="slider-row"><input type="range" id="riskLevel" min="50" max="120" step="1" value="85"><span class="slider-val" id="riskLevelVal">85%</span></div></div>
+        </div>
+        <div class="risk-display">
+          <div class="risk-side"><h4>🟢 Under-Commit</h4><p>Safe but leaves value on the table</p></div>
+          <div class="risk-meter">
+            <div class="risk-bar"><div class="risk-indicator" id="riskIndicator" style="left:55%"></div></div>
+            <div class="risk-labels"><span>50%</span><span>75%</span><span>90%</span><span>100%</span><span>120%</span></div>
+          </div>
+          <div class="risk-side"><h4>🔴 Over-Commit</h4><p>More value but true-up risk</p></div>
+        </div>
+        <div class="chart-insight" id="riskInsight"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 7: SAVINGS CALCULATOR & REINVESTMENT
+       ═══════════════════════════════════════ -->
+  <section class="section" id="calculator">
+    <div class="section-container">
+      <div class="section-label">Section 8 — Savings Calculator &amp; Reinvestment Planner</div>
+      <div class="chart-container">
+        <div class="chart-header"><h3>PPA Savings Calculator</h3><p>Input your customer's profile to calculate total savings and effective rates over the full term</p></div>
+        <div class="chart-controls">
+          <div class="slider-group"><label>Annual Spend</label><div class="slider-row"><input type="range" id="calcSpend" min="500000" max="15000000" step="100000" value="500000"><span class="slider-val" id="calcSpendVal">$500K</span></div></div>
+          <div class="slider-group"><label>YoY Growth %</label><div class="slider-row"><input type="range" id="calcGrowth" min="0" max="30" step="1" value="12"><span class="slider-val" id="calcGrowthVal">12%</span></div></div>
+          <div class="slider-group"><label>Term Length</label><div class="slider-row"><input type="range" id="calcTerm" min="1" max="5" step="1" value="3"><span class="slider-val" id="calcTermVal">3 yr</span></div></div>
+          <div class="slider-group"><label>Pre-PPA Optimization %</label><div class="slider-row"><input type="range" id="calcOptimization" min="0" max="45" step="1" value="30"><span class="slider-val" id="calcOptimizationVal">30%</span></div></div>
+        </div>
+        <div class="calc-results">
+          <div class="calc-result-card"><div class="calc-result-label">Value Tier</div><div class="calc-result-value accent-orange" id="calcDiscount">Enhanced</div></div>
+          <div class="calc-result-card"><div class="calc-result-label">Total Term Value</div><div class="calc-result-value savings-green" id="calcTotalSavings">$1.2M</div></div>
+          <div class="calc-result-card"><div class="calc-result-label">Optimized Cost Ratio</div><div class="calc-result-value" id="calcEffective">58%</div></div>
+          <div class="calc-result-card"><div class="calc-result-label">Combined Value (Opt + PPA)</div><div class="calc-result-value savings-green" id="calcCombined">$4.2M</div></div>
+        </div>
+        <div class="chart-wrapper"><canvas id="calcChart"></canvas></div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-header"><h3>Savings Reinvestment Planner</h3><p>This isn't money saved — it's money redirected into growth. Allocate your PPA savings into growth categories.</p></div>
+        <div class="reinvest-grid">
+          <div class="reinvest-sliders">
+            <div class="reinvest-item"><label><span>🚀 New Workloads</span><span id="riWorkloadsVal">30%</span></label><input type="range" id="riWorkloads" min="0" max="100" step="5" value="30" data-category="workloads"></div>
+            <div class="reinvest-item"><label><span>🌍 Regional Expansion</span><span id="riRegionsVal">20%</span></label><input type="range" id="riRegions" min="0" max="100" step="5" value="20" data-category="regions"></div>
+            <div class="reinvest-item"><label><span>🤖 AI/ML Innovation</span><span id="riAiVal">25%</span></label><input type="range" id="riAi" min="0" max="100" step="5" value="25" data-category="ai"></div>
+            <div class="reinvest-item"><label><span>📦 Migration Acceleration</span><span id="riMigrationVal">25%</span></label><input type="range" id="riMigration" min="0" max="100" step="5" value="25" data-category="migration"></div>
+          </div>
+          <div class="reinvest-chart-wrap"><canvas id="reinvestChart" width="280" height="280"></canvas></div>
+        </div>
+        <div class="chart-insight" id="reinvestInsight"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 9: YOUR GROWTH PLANNER
+       ═══════════════════════════════════════ -->
+  <section class="section" id="planner">
+    <div class="section-container">
+      <div class="section-label">Section 9 — Your Growth Planner</div>
+
+      <div class="narrative-card">
+        <div class="narrative-icon">📝</div>
+        <div class="narrative-content">
+          <h3>Map Your Cloud Investment — Project by Project</h3>
+          <p>Use the sliders to set your current baseline and anticipated growth, then add your specific projects and initiatives below with exact dollar amounts. This gives you a precise, bottom-up view of your projected AWS spend to help size your PPA commitment.</p>
+        </div>
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-header">
+          <h3>Baseline & Growth Settings</h3>
+          <p>Set your current annual AWS spend and expected organic year-over-year growth rate</p>
+        </div>
+        <div class="chart-controls">
+          <div class="slider-group">
+            <label>Current Annual Baseline Spend</label>
+            <div class="slider-row">
+              <input type="range" id="plannerBaseline" min="100000" max="15000000" step="50000" value="500000">
+              <span class="slider-val" id="plannerBaselineVal">$500K</span>
+            </div>
+          </div>
+          <div class="slider-group">
+            <label>Organic YoY Growth %</label>
+            <div class="slider-row">
+              <input type="range" id="plannerGrowth" min="0" max="40" step="1" value="10">
+              <span class="slider-val" id="plannerGrowthVal">10%</span>
+            </div>
+          </div>
+          <div class="slider-group">
+            <label>Planning Horizon</label>
+            <div class="slider-row">
+              <input type="range" id="plannerTerm" min="1" max="5" step="1" value="3">
+              <span class="slider-val" id="plannerTermVal">3 yr</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-header">
+          <h3>Project & Initiative Inputs</h3>
+          <p>Add each planned project or workload with its estimated annual spend increase and the year it begins. Click any value to edit it directly.</p>
+        </div>
+
+        <div class="planner-table-wrap">
+          <table class="planner-table" id="plannerTable">
+            <thead>
+              <tr>
+                <th class="col-name">Project / Initiative</th>
+                <th class="col-year">Start Year</th>
+                <th class="col-spend">Annual Spend Increase</th>
+                <th class="col-category">Category</th>
+                <th class="col-actions"></th>
+              </tr>
+            </thead>
+            <tbody id="plannerBody">
+              <tr data-row="0">
+                <td><input type="text" class="planner-input planner-name" value="Cloud Migration Phase 1" aria-label="Project name"></td>
+                <td><select class="planner-select planner-year" aria-label="Start year"><option value="1">Year 1</option><option value="2">Year 2</option><option value="3">Year 3</option><option value="4">Year 4</option><option value="5">Year 5</option></select></td>
+                <td><div class="spend-input-wrap"><span class="spend-prefix">$</span><input type="text" class="planner-input planner-spend" value="500,000" aria-label="Annual spend increase"></div></td>
+                <td><select class="planner-select planner-category" aria-label="Category"><option value="migration">Migration</option><option value="new-workload">New Workload</option><option value="expansion">Regional Expansion</option><option value="ai-ml">AI / ML</option><option value="modernization">Modernization</option><option value="marketplace">Marketplace</option><option value="other">Other</option></select></td>
+                <td><button class="planner-remove-btn" aria-label="Remove project" title="Remove">✕</button></td>
+              </tr>
+              <tr data-row="1">
+                <td><input type="text" class="planner-input planner-name" value="Data Analytics Platform" aria-label="Project name"></td>
+                <td><select class="planner-select planner-year" aria-label="Start year"><option value="1">Year 1</option><option value="2" selected>Year 2</option><option value="3">Year 3</option><option value="4">Year 4</option><option value="5">Year 5</option></select></td>
+                <td><div class="spend-input-wrap"><span class="spend-prefix">$</span><input type="text" class="planner-input planner-spend" value="300,000" aria-label="Annual spend increase"></div></td>
+                <td><select class="planner-select planner-category" aria-label="Category"><option value="migration">Migration</option><option value="new-workload" selected>New Workload</option><option value="expansion">Regional Expansion</option><option value="ai-ml">AI / ML</option><option value="modernization">Modernization</option><option value="marketplace">Marketplace</option><option value="other">Other</option></select></td>
+                <td><button class="planner-remove-btn" aria-label="Remove project" title="Remove">✕</button></td>
+              </tr>
+              <tr data-row="2">
+                <td><input type="text" class="planner-input planner-name" value="ML Model Training" aria-label="Project name"></td>
+                <td><select class="planner-select planner-year" aria-label="Start year"><option value="1">Year 1</option><option value="2">Year 2</option><option value="3" selected>Year 3</option><option value="4">Year 4</option><option value="5">Year 5</option></select></td>
+                <td><div class="spend-input-wrap"><span class="spend-prefix">$</span><input type="text" class="planner-input planner-spend" value="200,000" aria-label="Annual spend increase"></div></td>
+                <td><select class="planner-select planner-category" aria-label="Category"><option value="migration">Migration</option><option value="new-workload">New Workload</option><option value="expansion">Regional Expansion</option><option value="ai-ml" selected>AI / ML</option><option value="modernization">Modernization</option><option value="marketplace">Marketplace</option><option value="other">Other</option></select></td>
+                <td><button class="planner-remove-btn" aria-label="Remove project" title="Remove">✕</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="planner-btn-row">
+          <button class="planner-add-btn" id="plannerAddBtn">+ Add Project</button>
+          <button class="planner-download-btn" id="plannerDownloadBtn">⬇ Download CSV</button>
+        </div>
+      </div>
+
+      <!-- Planner Results -->
+      <div class="chart-container">
+        <div class="chart-header">
+          <h3>Projected Spend Trajectory</h3>
+          <p>Your baseline organic growth combined with planned project spend — a bottom-up view of your total AWS investment</p>
+        </div>
+        <div class="planner-summary-metrics">
+          <div class="metric-card"><div class="metric-label">Year 1 Total</div><div class="metric-value accent" id="planY1">$2.5M</div><div class="metric-sub">Baseline + projects</div></div>
+          <div class="metric-card"><div class="metric-label">Total Over Term</div><div class="metric-value" id="planTotal">$8.4M</div><div class="metric-sub">Full commitment scope</div></div>
+          <div class="metric-card"><div class="metric-label">Project Spend Added</div><div class="metric-value green" id="planProjectTotal">$1.0M</div><div class="metric-sub">From planned initiatives</div></div>
+          <div class="metric-card"><div class="metric-label">Suggested PPA Tier</div><div class="metric-value purple" id="planTier">Enhanced</div><div class="metric-sub" id="planTierSub">Based on avg annual</div></div>
+        </div>
+        <div class="chart-wrapper"><canvas id="plannerChart"></canvas></div>
+        <div class="chart-insight" id="plannerInsight"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer><p>AWS Private Pricing Agreement — Growth Acceleration Framework · Your Cloud Partnership Guide</p></footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
